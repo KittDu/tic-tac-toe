@@ -28,7 +28,6 @@ function startGame() {
     });
     winningMessage.classList.add("hide");
 }
-
 function handleClick(e) {
     const cell = e.target;
     const currentClass = isCircleTurn ? "circle" : "x";
@@ -73,8 +72,13 @@ function endGame(draw) {
         winningText.textContent = isCircleTurn ? "O Wins!" : "X Wins!";
     }
     winningMessage.classList.remove("hide");
+    // Disable all cells
+    cells.forEach(cell => {
+        cell.removeEventListener("click", handleClick);
+    });
 }
 
 restartButton.addEventListener("click", startGame);
 
 startGame();
+
